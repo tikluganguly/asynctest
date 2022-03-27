@@ -1,3 +1,9 @@
+use async_std::task::block_on;
+
+async fn say_hello(){
+    println!("Hello Again");
+}
+
 fn main() {
-    println!("Hello, world!");
+    block_on(say_hello());
 }

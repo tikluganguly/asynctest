@@ -6,6 +6,10 @@ async fn say_hello(){
     println!("Hello Again");
 }
 
+async fn with_result()->Result<String,()>{
+    Ok(String::from("Hello with result"))
+}
+
 async fn connect_radis()->String{
     sleep(time::Duration::from_secs(1)).await;
     String::from("Radis Connected")
@@ -20,6 +24,7 @@ async fn main_executor(){
     say_hello().await;
     let (db,radis)= join(connect_db(),connect_radis()).await;
     println!("{}, {}",db,radis);
+    println!("{}",with_result().await.unwrap());
 }
 
 fn main() {
